@@ -1,5 +1,5 @@
 import OverlayMenu from "./OverlayMenu";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import kr from "../assets/kr.png";
 import { FiMenu } from "react-icons/fi";
 
@@ -7,7 +7,65 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [forceVisible, setForceVisible] = useState(false);
+
   const lastScrollY = useRef(0);
+  const timerId = useRef(null);
+
+  useEffect(() => {
+    const homeSection = document.getElementById("home");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setForceVisible(true);
+          setVisible(true);
+        } else {
+          setForceVisible(false);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (homeSection) {
+      observer.observe(homeSection);
+    }
+
+    return () => {
+      if (homeSection) {
+        observer.unobserve(homeSection);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (forceVisible) {
+        setVisible(true);
+        return;
+      }
+
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setVisible(false);
+      } else {
+        setVisible(true);
+        if (timerId.current) {
+          clearTimeout(timerId.current);
+        }
+        timerId.current = setTimeout(() => {
+          setVisible(false);
+        }, 3000);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (timerId.current) {
+        clearTimeout(timerId.current);
+      }
+    };
+  }, [forceVisible]);
 
   return (
     <>
