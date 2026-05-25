@@ -1,9 +1,10 @@
 # TODO
 
-- [x] Inspect `my-portfolio/src/pages/Home.jsx` role-typing logic and identify syntax/runtime issues
+- [x] Fix Home.jsx build issues (missing avatar import)
+- [x] Fix social icons rendering (render Icon inside motion.a)
+- [x] Fix socials hrefs (add https:// and prevent empty links)
+- [x] Fix Tailwind class typo `flex - gap-5`
+- [x] Fix Framer Motion whileTap variant (`hover` -> `tap`)
+- [x] Run build/dev to verify
 
-- [ ] Update React imports in `Home.jsx` to include missing hooks (`useState`, `useEffect`)
 
-- [ ] Rewrite the role typing/deleting `useEffect` with correct timeout logic and cleanup
-- [ ] Fix JSX typo `sunIndex` -> `subIndex`
-- [ ] Run project build/dev to verify `Home.jsx` compiles and no lint errors
