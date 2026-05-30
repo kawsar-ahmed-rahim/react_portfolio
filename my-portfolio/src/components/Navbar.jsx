@@ -1,6 +1,6 @@
 import OverlayMenu from "./OverlayMenu";
 import { useState, useRef, useEffect } from "react";
-import kr from "../assets/kr.png";
+import kr from "../assets/R_double_outline_glow_logo.svg";
 import { FiMenu } from "react-icons/fi";
 
 export default function Navbar() {
