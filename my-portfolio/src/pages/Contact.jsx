@@ -1,6 +1,8 @@
 import ParticlesBackground from "../components/ParticlesBackground";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import Astra from "../assets/astra.png";
+import { motion } from "framer-motion";
 const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
 const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
@@ -64,6 +66,82 @@ export default function Contact() {
   return(
     <section id="contact" className="w-full relative min-h-screen  bg-black overflow-hidden text-white py-20 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10">
       <ParticlesBackground />
+      <div className="relative z-10 w-full flex flex-col md:flex-row items-center gap-10">
+        {/* left side */}
+        <motion.div className="w-full md:w-1/2 flex justify-center" 
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}>
+          <motion.img src={Astra} alt="Contact" className="w-72 md:w-140 rounded-2xl shadow-lg object-cover" 
+          animate={{y:[0,-10,0]}}
+          transition={{duration:2,repeat:Infinity,ease:"easeInOut"}}/>
+
+        </motion.div>
+
+        {/* right side */}
+
+        <motion.div className="w-full md:w-1/2 bg-white/5 p-8 rounded-2xl border border-white/10 shadow-lg"
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}>
+          <h2 className="text-3xl font-bold mb-6">
+            Let's Work Together!
+          </h2>
+
+          <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+            <div className="flex flex-col">
+              <label htmlFor="" className="mb-1">Your Name<span className="text-red-500">*</span></label>
+              <input type="text"
+               name="name"
+                value={formData.name}
+                placeholder="Your Name"
+                 onChange={handleChange} 
+                 className={`p-3 rounded-md bg-white/10 border ${errors.name ? "border-red-500" : "border-gay-500"} text-white focus:outline-none focus:ring-2 focus:border-blue-500`} />
+                  {errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
+            </div>
+
+           <div className="flex flex-col">
+              <label htmlFor="" className="mb-1">Your Email<span className="text-red-500">*</span></label>
+              <input type="email"
+               name="email"
+                value={formData.email}
+                placeholder="Your Email"
+                 onChange={handleChange} 
+                 className={`p-3 rounded-md bg-white/10 border ${errors.email ? "border-red-500" : "border-gay-500"} text-white focus:outline-none focus:ring-2 focus:border-blue-500`} />
+                  {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+            </div>
+                
+            <div className="flex flex-col">
+              <label htmlFor="" className="mb-1">Service Interested In<span className="text-red-500">*</span></label>
+              <select name="service" value={formData.service} onChange={handleChange} className={`p-3 rounded-md bg-white/10 border ${errors.service ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:ring-2 focus:border-blue-500`}>
+              <option value="" disabled>Something in mind?</option>
+              <option value="Full Stack Development" className="text-black">Full Stack Development</option>
+              <option value="Frontend Development" className="text-black">Frontend Development</option>
+              <option value="Backend Development" className="text-black">Backend Development</option>
+              <option value="Others" className="text-black">Others</option>
+              </select>
+              {errors.service && <p className="text-red-500 text-xs">{errors.service}</p>}
+              </div>
+
+              {formData.service && formData.service !== "Others" && (
+                <div className="flex flex-col">
+                  <label htmlFor="" className="mb-1">Estimated Budget<span className="text-red-500">*</span></label>
+                  <input type="text" name="budget" value={formData.budget} placeholder="Estimated Budget" onChange={handleChange} className={`p-3 rounded-md bg-white/10 border ${errors.budget ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:ring-2 focus:border-blue-500`} />
+                  {errors.budget && <p className="text-red-500 text-xs">{errors.budget}</p>}
+                </div>
+              )}
+
+              <div className="flex flex-col">
+              <label htmlFor="" className="mb-1">Explain Your Idea<span className="text-red-500">*</span></label>
+              <textarea name="idea" value={formData.idea} placeholder="Describe your idea..." onChange={handleChange} className={`p-3 rounded-md bg-white/10 border ${errors.idea ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:ring-2 focus:border-blue-500 resize-none h-32`} > </textarea>
+              {errors.idea && <p className="text-red-500 text-xs">{errors.idea}</p>}
+            </div>
+            { status && (<p>status === "sending" ? "sending..." : status === "success" ? "Message sent successfully!" : "Something went wrong. Please rey again."} </p>
+  )}
+          </form>
+
+        </motion.div>
+      </div>
       </section>
 
   )}
