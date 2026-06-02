@@ -133,11 +133,24 @@ export default function Contact() {
 
               <div className="flex flex-col">
               <label htmlFor="" className="mb-1">Explain Your Idea<span className="text-red-500">*</span></label>
-              <textarea name="idea" value={formData.idea} placeholder="Describe your idea..." onChange={handleChange} className={`p-3 rounded-md bg-white/10 border ${errors.idea ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:ring-2 focus:border-blue-500 resize-none h-32`} > </textarea>
+              <textarea rows={5} name="idea"
+              value={formData.idea} placeholder="Describe your idea..."
+               onChange={handleChange} 
+               className={`p-3 rounded-md bg-white/10 border
+                ${errors.idea ? "border-red-500" : "border-gray-500"}
+                 text-white focus:outline-none focus:border-blue-500`}></textarea>
               {errors.idea && <p className="text-red-500 text-xs">{errors.idea}</p>}
             </div>
-            { status && (<p>status === "sending" ? "sending..." : status === "success" ? "Message sent successfully!" : "Something went wrong. Please rey again."} </p>
+            { status && 
+            (<p className={`text-sm ${status === "success" ? "text-green-400" : status === "error" ? "text-red-400" : "text-yellow-400"}`}>{status === "sending" ? "sending..." : status === "success" ? "Message sent successfully!" : "Something went wrong. Please rey again."}</p>
   )}
+  <motion.button className="bg-blue-300 hover:bg-blue-600 disabled:opacity-60 text-white py-3 rounded-md font-semibold transition"
+  whileHover={{scale: 1.05}}
+  whileTap={{scale: 0.95}}
+  disabled={status=== "sending"}
+  type="submit">
+    {status === "sending" ? "sending..." : "send message"}
+    </motion.button>
           </form>
 
         </motion.div>

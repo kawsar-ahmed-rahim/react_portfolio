@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import p from "../assets/p.jpg";
+import p from "../assets/me.jpeg";
 export default function About() {
   const stats = [
     { label: " Project Builds", value: "50+" },
@@ -35,7 +35,7 @@ export default function About() {
           viewport={{ once: true, amount: 0.4 }}
         >
           <motion.div
-            className="relative w-[160px] h-[160px] md:w-[200px] md-h-[200px] rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-r from-[#1cd8d2] to-[#302b63]/20 border border-[#1cd8d2]/25"
+            className="relative w-[160px] h-[200px] md:w-[200px] md-h-[200px] rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-r from-[#1cd8d2] to-[#302b63]/20 border border-[#1cd8d2]/25"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 200, damping: 18 }}
           >

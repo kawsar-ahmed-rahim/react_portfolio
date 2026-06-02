@@ -69,7 +69,7 @@ export default function Projects() {
 
   return (
     <section
-      id="#projects"
+      id="projects"
       className="relative text-white"
       ref={sceneRef}
       style={{
@@ -126,7 +126,7 @@ export default function Projects() {
                   isMobile ? "rounded-lg mt-6" : "mb-10 sm:mb-12 rounded-xl"
                 } h-[62vh] sm:h-[66vh]
                   `}
-                  style={{zIndex:10, transition: "box-shadow 250ms ease"}}
+                style={{ zIndex: 10, transition: "box-shadow 250ms ease" }}
               >
                 <img
                   src={project.image}
@@ -140,16 +140,28 @@ export default function Projects() {
                   }}
                   loading="lazy"
                 />
-                <div className="pointer-events-none absolute inset-0"
-                 style={{zIndex:11,background:"linear-gradient(180deg, rgba(0,0,0,0.12) 0% , rgba(0,0,0,0) 40%)"}}></div>
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    zIndex: 11,
+                    background:
+                      "linear-gradient(180deg, rgba(0,0,0,0.12) 0% , rgba(0,0,0,0) 40%)",
+                  }}
+                ></div>
               </div>
-
             </div>
           ))}
         </div>
-        <div className={`absolute ${isMobile ? "bottom-20" : "bottom-10"}`}>
-          <a href={activeProject?.link} target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 font-semibold rounded-lg bg-white text-black hover: bg-gray-200 transition-all"
-          aria-label={`view ${activeProject?.title}`}>
+        <div
+          className={`absolute w-full flex justify-center ${isMobile ? "bottom-6" : "bottom-10"}`}
+        >
+          <a
+            href={activeProject?.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-6 py-2 sm:py-3 text-sm sm:text-base font-semibold rounded-lg bg-white text-black hover:bg-gray-200 transition-all"
+            aria-label={`view ${activeProject?.title}`}
+          >
             View Project
           </a>
         </div>

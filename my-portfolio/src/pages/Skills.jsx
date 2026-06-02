@@ -171,7 +171,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={sectionRef}
-      className="h-1/2 w-full pb-8 flex flex-col items-center justify-center relative bg-black text-white overflow-hidden"
+      className="h-1/2 w-full pb-20 flex flex-col items-center justify-center relative bg-black text-white overflow-hidden"
     >
       <motion.h2
         className="text-4xl mt-5 sm:text-5xl font-bold"
